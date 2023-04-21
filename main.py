@@ -18,6 +18,19 @@ while True:
     opcao = input(menu)
 
     match opcao:
+        # opção DEPOSITO
+        case '1':
+            print("--- DEPOSITO --- ")
+            valor_deposito = float(input("Insira o valor que deseja depositar: R$ "))
+            print(f"O valor a ser depositado é R$ {valor_deposito:.2f}.", end = " ")
+            confirmar = input("Confirma? S/N: ")
+            if confirmar.upper() == 'S':
+                saldo_atual += valor_deposito
+                extrato = extrato + " - Deposito...... R$ " + str(valor_deposito) + "\n"
+                print("Depósito efetuado com sucesso!")
+            else:
+                print("N\nOperação não efetuada.")
+
         # opção EXTRATO
         case '3':
             print("--- EXTRATO ---\nMovimentações:")
