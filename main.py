@@ -18,7 +18,14 @@ while True:
     opcao = input(menu)
 
     match opcao:
+        # opção EXTRATO
+        case '3':
+            print("--- EXTRATO ---\nMovimentações:")
+            print(extrato)
+            print("\n------------------------------\n")
+            print(f"Saldo atual... R$ {saldo_atual:.2f}")
         # opção SAIR
+
         case '0':
             print("Aplicativo será encerrado.", end = " ")
             confirmar = input("Confirma? S/N: ")
