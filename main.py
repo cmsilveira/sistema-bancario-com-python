@@ -31,6 +31,33 @@ while True:
             else:
                 print("N\nOperação não efetuada.")
 
+        # opção SAQUE
+        case '2':
+            # verifica se quantidade de saques diários alcançou o limite
+            if quantidade_saques == LIMITE_SAQUES:
+                print("Não é possível efetuar mais saques hoje. Quantidade diária atingiu o limite.")
+            else:
+                print('''--- SAQUE ---\n Informações:\n  - até 03 saques diários\n  - até R$ 500.00 por saque
+                ''')
+                valor_saque = float(input("Insira o valor que deseja retirar: R$ "))
+                # verifica se valor do saque é menor ou igual a zero
+                if valor_saque <= 0:
+                    print("Valor do saque não pode ser menor ou igual a zero. Por favor, insira um valor válido.")
+                # verifica se valor do saque é maior que o limite permitido
+                elif valor_saque > limite_por_saque:
+                    print("Operação não efetuada. Valor acima do limite (até R$ 500.00 por saque).")
+                # verifica se saldo em conta é suficiente para o saque
+                elif valor_saque > saldo_atual:
+                    print("Operação não efetuada. Saldo insuficiente!")
+                else:
+                    print(f"O valor a ser retirado é R$ {valor_saque:.2f}.", end = " ")
+                    confirmar = input("Confirma? S/N: ")
+                    if confirmar.upper() == 'S':
+                        saldo_atual -= valor_saque
+                        extrato = extrato + " - Saque......... R$ " + str(valor_saque) + "\n"
+                        quantidade_saques += 1
+                        print(f"Operação efetuada com sucesso! Quantidade de saques restantes para a data de hoje: {LIMITE_SAQUES - quantidade_saques}")
+
         # opção EXTRATO
         case '3':
             print("--- EXTRATO ---\nMovimentações:")
